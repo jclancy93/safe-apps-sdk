@@ -7,6 +7,7 @@
   "scripts": {
     "build:sdk": "lerna run --scope @gnosis.pm/safe-apps-sdk build --stream",
     "test:sdk": "lerna run --scope @gnosis.pm/safe-apps-sdk test --stream",
+    "version-packages": "changeset version",
     "release": "lerna run build && changeset publish"
   },
   "workspaces": {
