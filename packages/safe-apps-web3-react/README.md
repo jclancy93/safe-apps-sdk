@@ -38,6 +38,42 @@ const App = () => {
 };
 ```
 
+If you are connecting with an SSR library like NextJS, your code may look something like this
+
+```js
+// SafeManager.tsx
+import React, { useEffect } from "react";
+
+import {
+  useSafeAppConnection,
+  SafeAppConnector,
+} from "@gnosis.pm/safe-apps-web3-react";
+
+const safeMultisigConnector = new SafeAppConnector();
+
+export default function GnosisManager() {
+  const triedToConnectToSafe = useSafeAppConnection(safeMultisigConnector);
+  return null;
+}
+```
+
+```js
+// App.tsx
+import React from "react";
+import dynamic from "next/dynamic";
+
+const GnosisManagerNoSSR = dynamic(() => import("./GnosisManager"), {
+  ssr: false,
+});
+
+const App = () => {
+  <>
+    <GnosisSafeManager />
+    <RestOfApp>
+  </>
+}
+```
+
 ## More scenarios
 
 For the SDK overview documentation, please refer to the [safe-apps-sdk](https://github.com/gnosis/safe-apps-sdk/) documentation
